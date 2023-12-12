@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void displayDataFromDatabase() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM HighScores", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM HighScores ORDER BY Score DESC", null);
         StringBuilder displayText = new StringBuilder("Player Data:\n");
 
         if (cursor.moveToFirst()) {
