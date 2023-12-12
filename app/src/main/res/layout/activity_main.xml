@@ -34,4 +34,13 @@
         android:text="Player Data:"
         android:layout_below="@id/btnAdd"
         android:layout_margin="16dp"/>
+
+    <Button
+        android:id="@+id/btnDeleteAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete All Entries"
+        android:layout_below="@id/textViewDisplay"
+        android:layout_margin="16dp"/>
+
 </RelativeLayout>
