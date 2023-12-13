@@ -8,11 +8,13 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PlayGameActivity extends AppCompatActivity {
 
     private List<Button> buttons;
+    private List<Integer> buttonSequence;
     private int currentButtonIndex = 0;
 
     @Override
@@ -33,8 +35,19 @@ public class PlayGameActivity extends AppCompatActivity {
         buttons.add(colorRight);
         buttons.add(colorBottom);
 
+        // Create a sequence of button indices in random order
+        createRandomButtonSequence();
+
         // Display colors sequentially
         displayColors();
+    }
+
+    private void createRandomButtonSequence() {
+        buttonSequence = new ArrayList<>();
+        for (int i = 0; i < buttons.size(); i++) {
+            buttonSequence.add(i);
+        }
+        Collections.shuffle(buttonSequence);
     }
 
     private void displayColors() {
@@ -45,9 +58,9 @@ public class PlayGameActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (currentButtonIndex < buttons.size()) {
+                if (currentButtonIndex < buttonSequence.size()) {
                     hideAllButtons();
-                    showButton(currentButtonIndex);
+                    showButton(buttonSequence.get(currentButtonIndex));
                     currentButtonIndex++;
                     handler.postDelayed(this, delay + showDuration);
                 }
