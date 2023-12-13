@@ -43,4 +43,14 @@
         android:layout_below="@id/textViewDisplay"
         android:layout_margin="16dp"/>
 
+    <Button
+        android:id="@+id/btnPlayGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="329dp"
+        android:text="Play Game" />
+
 </RelativeLayout>

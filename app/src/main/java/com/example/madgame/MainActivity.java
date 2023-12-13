@@ -2,6 +2,7 @@ package com.example.madgame;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -43,6 +44,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 deleteAllEntries();
+            }
+        });
+
+        Button btnPlayGame = findViewById(R.id.btnPlayGame);
+        btnPlayGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Launch the Play Game activity here
+                Intent intent = new Intent(MainActivity.this, PlayGameActivity.class);
+                startActivity(intent);
             }
         });
 
