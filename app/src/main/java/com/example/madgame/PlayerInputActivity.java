@@ -1,5 +1,8 @@
 package com.example.madgame;
 
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -45,6 +48,10 @@ public class PlayerInputActivity extends AppCompatActivity {
         }
     }
 
+    private int calculateScore() {
+        int correctGuesses = currentIndex; // Assuming currentIndex represents the count of correct guesses
+        return correctGuesses * 10; // Assign 10 points for each correct guess
+    }
     // Method called when any input button is clicked
 
     private void onInputButtonClick(Button clickedButton) {
@@ -53,24 +60,44 @@ public class PlayerInputActivity extends AppCompatActivity {
 
         if (clickedButtonIndex == expectedButtonIndex) {
             currentIndex++;
-
-            // Increment score or apply scoring logic here
-            // For instance, you might give points for each correct button pressed
             score += 10; // Increment the score by 10 for each correct button pressed
 
             if (currentIndex == displayedSequence.size()) {
                 // User successfully replicated the sequence
                 Toast.makeText(this, "Sequence matched! Score: " + score, Toast.LENGTH_SHORT).show();
                 // Communicate success back to PlayGameActivity or perform the necessary action
-                // For example, finish() this activity to go back to the PlayGameActivity
-                finish();
+                saveScoreToDatabase(score); // Save the score to the database
+                Intent intent = new Intent(PlayerInputActivity.this, GameOverActivity.class);
+                intent.putExtra("score", score); // Pass the score to the Game Over activity
+                startActivity(intent);
+                finish(); // Finish this activity
             }
         } else {
             // Incorrect sequence input
             Toast.makeText(this, "Incorrect sequence! Score: " + score, Toast.LENGTH_SHORT).show();
-            // Handle incorrect input, e.g., go to the Game Over screen or reset the round
-            // You can implement additional logic based on your game requirements
+
+            saveScoreToDatabase(score); // Save the score to the database
+            Intent intent = new Intent(PlayerInputActivity.this, GameOverActivity.class);
+            intent.putExtra("score", score); // Pass the score to the Game Over activity
+            startActivity(intent);
+            finish(); // Finish this activity
         }
     }
+
+    private void saveScoreToDatabase(int score) {
+        HighScoresDatabaseHelper dbHelper = new HighScoresDatabaseHelper(this);
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        // Get the player name (you may have a method to retrieve the name)
+        String playerName = "Player"; // Replace this with the actual player name
+
+        ContentValues values = new ContentValues();
+        values.put("PlayerName", playerName);
+        values.put("Score", score);
+
+        db.insert("HighScores", null, values);
+        db.close();
+    }
+
 }
 

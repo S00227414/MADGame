@@ -1,0 +1,56 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Score display -->
+    <TextView
+        android:id="@+id/textViewScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Score: 0"
+        android:textSize="24sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"/>
+
+    <!-- Name input -->
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewScore"
+        android:hint="Enter Your Name"
+        android:layout_marginTop="20dp"
+        android:padding="8dp"/>
+
+    <!-- Button: Add to High Scores -->
+    <Button
+        android:id="@+id/buttonAddToScores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add to High Scores"
+        android:layout_below="@id/editTextName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Button: Play Again -->
+    <Button
+        android:id="@+id/buttonPlayAgain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Play Again"
+        android:layout_below="@id/buttonAddToScores"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+
+    <!-- Button: View High Scores -->
+    <Button
+        android:id="@+id/buttonViewScores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View High Scores"
+        android:layout_below="@id/buttonPlayAgain"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"/>
+
+</RelativeLayout>

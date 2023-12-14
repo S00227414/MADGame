@@ -1,47 +1,19 @@
 <!-- activity_main.xml -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <EditText
-        android:id="@+id/editTextName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Name"
-        android:layout_margin="16dp"/>
-
-    <EditText
-        android:id="@+id/editTextScore"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter Score"
-        android:inputType="number"
-        android:layout_below="@id/editTextName"
-        android:layout_margin="16dp"/>
-
-    <Button
-        android:id="@+id/btnAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add to Database"
-        android:layout_below="@id/editTextScore"
-        android:layout_margin="16dp"/>
+    android:layout_height="match_parent"
+    android:background="@color/LightBlue">>
 
     <TextView
-        android:id="@+id/textViewDisplay"
+        android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Player Data:"
-        android:layout_below="@id/btnAdd"
-        android:layout_margin="16dp"/>
+        android:layout_centerInParent="true"
+        android:text="MADGame\nSequence superhero!"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#000" />
 
-    <Button
-        android:id="@+id/btnDeleteAll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Delete All Entries"
-        android:layout_below="@id/textViewDisplay"
-        android:layout_margin="16dp"/>
 
     <Button
         android:id="@+id/btnPlayGame"
