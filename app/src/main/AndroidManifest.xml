@@ -29,6 +29,8 @@
             android:screenOrientation="landscape"/>
         <activity android:name=".PlayerInputActivity"
             android:screenOrientation="landscape"/>
+        <activity android:name=".GameOverActivity"
+            android:screenOrientation="landscape"/>
 
 
     </application>
