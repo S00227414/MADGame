@@ -20,6 +20,7 @@ public class PlayGameActivity extends AppCompatActivity {
     private List<Button> buttons;
     private List<Integer> buttonSequence;
     private int currentButtonIndex = 0;
+    private boolean inputTransitionInitiated = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +55,6 @@ public class PlayGameActivity extends AppCompatActivity {
         });
     }
 
-    private int expectedButtonIndex = 0; // To track the expected button index in the sequence
-
     public void startSequence(View view) {
         startSequenceDisplay();
     }
@@ -72,7 +71,6 @@ public class PlayGameActivity extends AppCompatActivity {
         }
         Collections.shuffle(buttonSequence);
     }
-
     private void displayColors() {
         final int showDuration = 500; // Duration to show each button (in milliseconds)
         final int sequenceDuration = 10000; // Total duration for the sequence (in milliseconds)
@@ -135,21 +133,24 @@ public class PlayGameActivity extends AppCompatActivity {
             }
         }, delay);
 
-        // Schedule transition to the input screen after the sequence display
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                initiateInputTransition();
+                if (!inputTransitionInitiated) {
+                    initiateInputTransition();
+                    inputTransitionInitiated = true;
+                }
             }
-        }, delay * buttonSequence.size() + transitionDelay); // Delay for the entire sequence display plus transition delay
+        }, delay * buttonSequence.size() + transitionDelay);
     }
 
     private void initiateInputTransition() {
-        Intent intent = new Intent(PlayGameActivity.this, PlayerInputActivity.class);
-        intent.putIntegerArrayListExtra("displayedSequence", (ArrayList<Integer>) buttonSequence);
-        startActivity(intent);
-        finish(); // Finish this activity so the user cannot go back to the sequence display
+        if (!isFinishing()) { // Check if the activity is finishing before starting the new activity
+            Intent intent = new Intent(PlayGameActivity.this, PlayerInputActivity.class);
+            intent.putIntegerArrayListExtra("displayedSequence", (ArrayList<Integer>) buttonSequence);
+            startActivity(intent);
+            finish();
+        }
     }
-
 
 }
