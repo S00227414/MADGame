@@ -13,6 +13,7 @@ public class PlayerInputActivity extends AppCompatActivity {
     private List<Button> inputButtons;
     private List<Integer> displayedSequence;
     private int currentIndex;
+    private int score = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,24 +46,31 @@ public class PlayerInputActivity extends AppCompatActivity {
     }
 
     // Method called when any input button is clicked
+
     private void onInputButtonClick(Button clickedButton) {
         int clickedButtonIndex = inputButtons.indexOf(clickedButton);
         int expectedButtonIndex = displayedSequence.get(currentIndex);
 
         if (clickedButtonIndex == expectedButtonIndex) {
             currentIndex++;
+
+            // Increment score or apply scoring logic here
+            // For instance, you might give points for each correct button pressed
+            score += 10; // Increment the score by 10 for each correct button pressed
+
             if (currentIndex == displayedSequence.size()) {
                 // User successfully replicated the sequence
-                Toast.makeText(this, "Sequence matched!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Sequence matched! Score: " + score, Toast.LENGTH_SHORT).show();
                 // Communicate success back to PlayGameActivity or perform the necessary action
                 // For example, finish() this activity to go back to the PlayGameActivity
                 finish();
             }
         } else {
             // Incorrect sequence input
-            Toast.makeText(this, "Incorrect sequence!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Incorrect sequence! Score: " + score, Toast.LENGTH_SHORT).show();
             // Handle incorrect input, e.g., go to the Game Over screen or reset the round
             // You can implement additional logic based on your game requirements
         }
     }
 }
+
