@@ -24,6 +24,8 @@
 
         <!-- Add PlayGameActivity here -->
         <activity android:name=".PlayGameActivity" />
+        <activity android:name=".PlayerInputActivity" />
+
 
     </application>
 
