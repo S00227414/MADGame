@@ -31,6 +31,8 @@
             android:screenOrientation="landscape"/>
         <activity android:name=".GameOverActivity"
             android:screenOrientation="landscape"/>
+        <activity android:name=".HighScoreActivity"
+            android:screenOrientation="landscape"/>
 
 
     </application>
